@@ -1,17 +1,16 @@
 {% macro leaves_recursive(leaf) %}
     {% import _self as self %}
-    <li>
-        {{ leaf.username }}
-        {% if leaf.leftLeaf %}
-            <ul>
-                {{ self.leaves_recursive(leaf.leftLeaf) }}
-            </ul>
-        {% endif %}
-        {% if leaf.rightLeaf %}
-            <ul>
-                {{ self.leaves_recursive(leaf.rightLeaf) }}
-            </ul>
-        {% endif %}
-
-    </li>
+    <p>{{ leaf.username }}</p>
+    <p>Right credits: {{ leaf.rightCredits }}</p>
+    <p>Left credits: {{ leaf.leftCredits }}</p>
+    {% if leaf.leftLeaf %}
+        <div class="leaf left">
+            {{ self.leaves_recursive(leaf.leftLeaf) }}
+        </div>
+    {% endif %}
+    {% if leaf.rightLeaf %}
+        <div class="leaf right">
+            {{ self.leaves_recursive(leaf.rightLeaf) }}
+        </div>
+    {% endif %}
 {% endmacro %}

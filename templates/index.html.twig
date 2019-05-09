@@ -8,22 +8,20 @@
     <p class="important">
         Here are the trees.
     </p>
-    <ul>
+
         {% for tree in trees %}
-            <li>Tree id: {{ tree.id }}
-                <ul>
+            <div><p>Tree id: {{ tree.id }} <a href="{{ path('add-random-user', {'id': tree.id}) }}">[Add random user]</a></p>
+                <div class="leaf tree-root">
                     {% if tree.rootUser is not null %}
                         {{ macros.leaves_recursive(tree.rootUser) }}
                     {% else %}
                         this tree is empty
                     {% endif %}
-                    <li><a href="{{ path('add-random-user', {'id': tree.id}) }}">Add random user!</a></li>
-                </ul>
-            </li>
+                </div>
+            </div>
         {% else %}
-            <li>no trees yet</li>
+            <p>No trees yet!</p>
         {% endfor %}
-    </ul>
     <p>
         <a href="{{ path('add-tree') }}">Add another tree!</a>
     </p>

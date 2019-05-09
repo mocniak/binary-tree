@@ -1,0 +1,26 @@
+div.leaf {
+    color: navy;
+    padding: 10px;
+    display: block;
+    width: calc(50% - 27px);
+    min-height: 100px;
+    border: 1px solid black;
+}
+
+p {
+    text-align: center;
+}
+
+div.left {
+    float: left;
+}
+
+div.right {
+    float: right;
+}
+
+div.tree-root {
+    width: calc(100% - 20px);
+    float: left;
+    clear: both;
+}

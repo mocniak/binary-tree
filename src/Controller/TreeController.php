@@ -36,7 +36,7 @@ class TreeController extends AbstractController
      */
     public function addRandomUser(string $id, TreeService $treeService)
     {
-        $treeService->addUserToTree(Uuid::fromString($id), (new Random())->get(), 12, 31);
+        $treeService->addUserToTree(Uuid::fromString($id), (new Random())->get(), rand(0,100), rand(0,100));
 
         return $this->redirectToRoute('homepage');
     }
