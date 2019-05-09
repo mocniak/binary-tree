@@ -11,8 +11,10 @@ interface TreeRepository
 
     public function add(Tree $tree): void;
 
+    public function save(Tree $tree): void;
+
     /**
      * @return Tree[]
      */
-    public function findAll(): array ;
+    public function findAll(): array;
 }

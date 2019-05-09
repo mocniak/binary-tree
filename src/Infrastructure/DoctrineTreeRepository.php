@@ -20,7 +20,7 @@ class DoctrineTreeRepository implements TreeRepository
 
     public function get(UuidInterface $id): Tree
     {
-        $this->repository->find($id);
+        return $this->repository->find($id);
     }
 
     public function add(Tree $tree): void
@@ -28,8 +28,9 @@ class DoctrineTreeRepository implements TreeRepository
         $this->entityManager->persist($tree);
     }
 
-    public function __destruct()
+    public function save(Tree $tree): void
     {
+        $this->entityManager->merge($tree);
         $this->entityManager->flush();
     }
 
@@ -39,5 +40,10 @@ class DoctrineTreeRepository implements TreeRepository
     public function findAll(): array
     {
         return $this->repository->findAll();
+    }
+
+    public function __destruct()
+    {
+        $this->entityManager->flush();
     }
 }

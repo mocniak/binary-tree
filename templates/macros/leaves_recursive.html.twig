@@ -1,0 +1,16 @@
+{% macro leaves_recursive(leaf) %}
+    <li>
+        {{ leaf.username }}
+        {% if leaf.leftLeaf %}
+            <ul>
+                {{ _self.leaves_recursive(leaf.leftLeaf) }}
+            </ul>
+        {% endif %}
+        {% if leaf.rightLeaf %}
+            <ul>
+                {{ _self.leaves_recursive(leaf.rightLeaf) }}
+            </ul>
+        {% endif %}
+
+    </li>
+{% endmacro %}

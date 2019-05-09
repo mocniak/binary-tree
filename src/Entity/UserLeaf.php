@@ -3,9 +3,12 @@
 namespace App\Entity;
 
 use App\Exception\DuplicateUsernameException;
+use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
-final class UserLeaf
+class UserLeaf
 {
+    private $id;
     private $username;
     private $leftCredits;
     private $rightCredits;
@@ -16,11 +19,17 @@ final class UserLeaf
 
     public function __construct(string $username, int $leftCredits, int $rightCredits)
     {
+        $this->id = Uuid::uuid4();
         $this->username = $username;
         $this->leftCredits = $leftCredits;
         $this->rightCredits = $rightCredits;
         $this->rightLeaf = null;
         $this->leftLeaf = null;
+    }
+
+    public function id(): UuidInterface
+    {
+        return $this->id;
     }
 
     public function username(): string
@@ -77,12 +86,12 @@ final class UserLeaf
         }
     }
 
-    public function rightUser(): ?UserLeaf
+    public function rightLeaf(): ?UserLeaf
     {
         return $this->rightLeaf;
     }
 
-    public function leftUser()
+    public function leftLeaf(): ?UserLeaf
     {
         return $this->leftLeaf;
     }

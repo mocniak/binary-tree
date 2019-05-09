@@ -5,7 +5,11 @@ App\Entity\Tree:
     id:
       type: uuid
       generator: { strategy: NONE }
-  fields:
+  oneToOne:
     rootUser:
-      class: UserLeaf
+      targetEntity: UserLeaf
+      joinColumn:
+        name: rootUser_id
+        referencedColumnName: id
       nullable: true
+      cascade: ["persist"]

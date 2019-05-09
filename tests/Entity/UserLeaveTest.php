@@ -13,7 +13,7 @@ class UserLeaveTest extends TestCase
         $userLeave = new UserLeaf('B', 1, 2);
         $anotherUser = new UserLeaf('C', 3, 4);
         $userLeave->addUser($anotherUser);
-        $this->assertSame($anotherUser, $userLeave->rightUser());
+        $this->assertSame($anotherUser, $userLeave->rightLeaf());
     }
 
     public function testUserWithSmallerNameIsStoredInLeftNode()
@@ -21,7 +21,7 @@ class UserLeaveTest extends TestCase
         $userLeave = new UserLeaf('B', 1, 2);
         $anotherUser = new UserLeaf('A', 3, 4);
         $userLeave->addUser($anotherUser);
-        $this->assertSame($anotherUser, $userLeave->leftUser());
+        $this->assertSame($anotherUser, $userLeave->leftLeaf());
     }
 
     public function testUserWithGreaterNameIsStoredInRightNodeAndViceVersa()
@@ -31,8 +31,8 @@ class UserLeaveTest extends TestCase
         $yetAnotherUser = new UserLeaf('A', 3, 4);
         $userLeave->addUser($anotherUser);
         $userLeave->addUser($yetAnotherUser);
-        $this->assertSame($anotherUser, $userLeave->rightUser());
-        $this->assertSame($yetAnotherUser, $userLeave->leftUser());
+        $this->assertSame($anotherUser, $userLeave->rightLeaf());
+        $this->assertSame($yetAnotherUser, $userLeave->leftLeaf());
     }
 
     public function testUserFindsItselfThenLooksForItsName()

@@ -1,5 +1,10 @@
 App\Entity\UserLeaf:
-  type: embeddable
+  type: entity
+  table: user_leaves
+  id:
+    id:
+      type: uuid
+      generator: { strategy: NONE }
   fields:
     username:
       type: string
@@ -8,9 +13,18 @@ App\Entity\UserLeaf:
       type: integer
     rightCredits:
       type: integer
+  oneToOne:
     leftLeaf:
-      class: UserLeaf
+      targetEntity: UserLeaf
+      joinColumn:
+        name: left_leaf_id
+        referencedColumnName: id
       nullable: true
+      cascade: ["persist"]
     rightLeaf:
-      class: UserLeaf
+      targetEntity: UserLeaf
+      joinColumn:
+        name: right_leaf_id
+        referencedColumnName: id
       nullable: true
+      cascade: ["persist"]

@@ -41,4 +41,9 @@ final class Tree
     {
         return $this->id;
     }
+
+    public function rootUser(): ?UserLeaf
+    {
+        return $this->rootUser;
+    }
 }

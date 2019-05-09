@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Application\TreeRepository;
 use App\Application\TreeService;
+use PragmaRX\Random\Random;
+use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -29,14 +31,13 @@ class TreeController extends AbstractController
         return $this->redirectToRoute('homepage');
     }
     /**
-     * @Route("/add-random-user", name="add-random-user")
+     * @Route("/add-random-user/{id}", name="add-random-user")
      */
-    public function addRandomUser()
+    public function addRandomUser(string $id, TreeService $treeService)
     {
+        $treeService->addUserToTree(Uuid::fromString($id), (new Random())->get(), 12, 31);
 
-        return $this->render('index.html.twig', [
-
-        ]);
+//        return $this->redirectToRoute('homepage');
     }
 
 }

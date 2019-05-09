@@ -1,3 +1,5 @@
+{% import "macros/leaves_recursive.html.twig" as macros %}
+
 {% extends "base.html.twig" %}
 
 {% block title %}Index{% endblock %}
@@ -7,11 +9,22 @@
         Here are the trees.
     </p>
     <ul>
-    {% for tree in trees%}
-        <li>{{ tree.id }}</li>
+        {% for tree in trees %}
+            <li>Tree id: {{ tree.id }}
+                <ul>
+                    <li>
+                        {% if tree.rootUser is not null %}
+                            {{ macros.leaves_recursive(tree.rootUser) }}
+                        {% else %}
+                            this tree is empty
+                        {% endif %}
+                    </li>
+                    <li><a href="{{ path('add-random-user', {'id': tree.id}) }}">Add random user!</a></li>
+                </ul>
+            </li>
         {% else %}
-        <li>no trees yet</li>
-    {% endfor %}
+            <li>no trees yet</li>
+        {% endfor %}
     </ul>
     <p>
         <a href="{{ path('add-tree') }}">Add another tree!</a>

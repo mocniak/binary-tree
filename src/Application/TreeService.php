@@ -21,5 +21,7 @@ class TreeService
     public function addUserToTree(UuidInterface $treeId, $username, $leftCredits, $rightCredits){
         $tree = $this->repository->get($treeId);
         $tree->addUser($username, $leftCredits, $rightCredits);
+        var_dump($tree);
+        $this->repository->save($tree);
     }
 }
