@@ -3,25 +3,25 @@
 namespace App\Entity;
 
 use App\Exception\UserNotFoundException;
+use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
-class Tree
+final class Tree
 {
-    /** @var UserLeave|null */
+    /** @var UserLeaf|null */
     private $rootUser;
+
+    private $id;
 
     public function __construct()
     {
+        $this->id = Uuid::uuid4();
         $this->rootUser = null;
-    }
-
-    public function getLeaves()
-    {
-        return [];
     }
 
     public function addUser(string $username, int $leftCredits, int $rightCredits)
     {
-        $newUser = new UserLeave($username, $leftCredits, $rightCredits);
+        $newUser = new UserLeaf($username, $leftCredits, $rightCredits);
         if ($this->rootUser === null) {
             $this->rootUser = $newUser;
         } else {
@@ -29,11 +29,16 @@ class Tree
         }
     }
 
-    public function getUser(string $username): UserLeave
+    public function getUser(string $username): UserLeaf
     {
         if ($this->rootUser === null) {
             throw new UserNotFoundException();
         }
         return $this->rootUser->find($username);
+    }
+
+    public function id(): UuidInterface
+    {
+        return $this->id;
     }
 }

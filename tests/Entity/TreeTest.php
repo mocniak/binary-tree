@@ -8,12 +8,6 @@ use PHPUnit\Framework\TestCase;
 
 class TreeTest extends TestCase
 {
-    public function testNewTreeIsEmpty()
-    {
-        $tree = new Tree();
-        $this->assertEmpty($tree->getLeaves());
-    }
-
     public function testTreeStoresUsers()
     {
         $tree = new Tree();

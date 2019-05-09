@@ -1,0 +1,16 @@
+App\Entity\UserLeaf:
+  type: embeddable
+  fields:
+    username:
+      type: string
+      length: 250
+    leftCredits:
+      type: integer
+    rightCredits:
+      type: integer
+    leftLeaf:
+      class: UserLeaf
+      nullable: true
+    rightLeaf:
+      class: UserLeaf
+      nullable: true

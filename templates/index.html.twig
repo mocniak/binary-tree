@@ -1,0 +1,19 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Index{% endblock %}
+{% block body %}
+    <h1>Trees</h1>
+    <p class="important">
+        Here are the trees.
+    </p>
+    <ul>
+    {% for tree in trees%}
+        <li>{{ tree.id }}</li>
+        {% else %}
+        <li>no trees yet</li>
+    {% endfor %}
+    </ul>
+    <p>
+        <a href="{{ path('add-tree') }}">Add another tree!</a>
+    </p>
+{% endblock %}

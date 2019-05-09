@@ -1,0 +1,11 @@
+App\Entity\Tree:
+  type: entity
+  table: trees
+  id:
+    id:
+      type: uuid
+      generator: { strategy: NONE }
+  fields:
+    rootUser:
+      class: UserLeaf
+      nullable: true
