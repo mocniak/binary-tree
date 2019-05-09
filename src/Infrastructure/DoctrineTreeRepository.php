@@ -28,12 +28,6 @@ class DoctrineTreeRepository implements TreeRepository
         $this->entityManager->persist($tree);
     }
 
-    public function save(Tree $tree): void
-    {
-        $this->entityManager->merge($tree);
-        $this->entityManager->flush();
-    }
-
     /**
      * @return Tree[]
      */

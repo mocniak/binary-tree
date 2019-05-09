@@ -28,6 +28,7 @@ class TreeController extends AbstractController
     public function addTree(TreeService $treeService)
     {
         $treeService->addEmptyTree();
+
         return $this->redirectToRoute('homepage');
     }
     /**
@@ -37,7 +38,7 @@ class TreeController extends AbstractController
     {
         $treeService->addUserToTree(Uuid::fromString($id), (new Random())->get(), 12, 31);
 
-//        return $this->redirectToRoute('homepage');
+        return $this->redirectToRoute('homepage');
     }
 
 }

@@ -12,13 +12,11 @@
         {% for tree in trees %}
             <li>Tree id: {{ tree.id }}
                 <ul>
-                    <li>
-                        {% if tree.rootUser is not null %}
-                            {{ macros.leaves_recursive(tree.rootUser) }}
-                        {% else %}
-                            this tree is empty
-                        {% endif %}
-                    </li>
+                    {% if tree.rootUser is not null %}
+                        {{ macros.leaves_recursive(tree.rootUser) }}
+                    {% else %}
+                        this tree is empty
+                    {% endif %}
                     <li><a href="{{ path('add-random-user', {'id': tree.id}) }}">Add random user!</a></li>
                 </ul>
             </li>
